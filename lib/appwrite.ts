@@ -1,9 +1,12 @@
 import { Client, Databases, Storage, ID, Query } from 'appwrite';
 
 // Initialize Appwrite client
+const endpoint = process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT || 'https://nyc.cloud.appwrite.io/v1';
+const projectId = process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID || '681f9cc80018c9d0397a';
+
 const client = new Client()
-    .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!)
-    .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID!);
+    .setEndpoint(endpoint)
+    .setProject(projectId);
 
 // Set API key in headers from environment variable
 if (process.env.NEXT_PUBLIC_APPWRITE_KEY) {
@@ -15,9 +18,9 @@ export const databases = new Databases(client);
 export const storage = new Storage(client);
 
 // Constants
-export const BUCKET_ID = process.env.NEXT_PUBLIC_APPWRITE_BUCKET_ID!;
-export const DATABASE_ID = process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!;
-export const COLLECTION_ID = process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_ID!;
+export const BUCKET_ID = process.env.NEXT_PUBLIC_APPWRITE_BUCKET_ID || '681f9eb2001fa04ba001';
+export const DATABASE_ID = process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID || '681f9d53003761a7cbb9';
+export const COLLECTION_ID = process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_ID || '681f9f9e0036eb41aab1';
 
 // Function to upload GLB file to Appwrite Storage
 export async function uploadGLBFile(fileName: string, fileBuffer: Buffer) {

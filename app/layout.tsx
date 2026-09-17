@@ -12,13 +12,17 @@ export const metadata: Metadata = {
   description: "Customize your dream car in 3D with AutoVista",
 }
 
+const clerkPublishableKey =
+  process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ||
+  "pk_test_bm9ybWFsLXdlcmV3b2xmLTM0LmNsZXJrLmFjY291bnRzLmRldiQ";
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider publishableKey={clerkPublishableKey}>
       <html lang="en" suppressHydrationWarning>
         <body className="font-sans antialiased">
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>

@@ -1,8 +1,8 @@
-// import { NextApiRequest, NextApiResponse } from "next";
-// import { connectToDatabase } from "@/lib/mongodb";
-// import Car from "@/models/carConfig";
+import type { NextApiRequest, NextApiResponse } from "next";
 
-// export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
+  res.status(405).json({ message: "Deprecated endpoint. Use /api/models instead." });
+}
 //   if (req.method !== "GET") return res.status(405).json({ message: "Method Not Allowed" });
 
 //   try {

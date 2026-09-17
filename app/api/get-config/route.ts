@@ -4,14 +4,16 @@ import { NextRequest, NextResponse } from 'next/server';
 import { databases } from '@/lib/appwrite';
 import { Query } from 'appwrite';
 
-const DATABASE_ID = process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID;
-const CAR_CONFIGS_COLLECTION_ID = process.env.NEXT_PUBLIC_APPWRITE_CAR_CONFIGS_COLLECTION_ID;
-
-if (!DATABASE_ID || !CAR_CONFIGS_COLLECTION_ID) {
-  throw new Error('Please define the Appwrite database and collection IDs in .env');
-}
-
 export async function GET(req: NextRequest) {
+  const DATABASE_ID = process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID || '681f9d53003761a7cbb9';
+  const CAR_CONFIGS_COLLECTION_ID = process.env.NEXT_PUBLIC_APPWRITE_CAR_CONFIGS_COLLECTION_ID || '68208d81002eed4519c1';
+
+  if (!DATABASE_ID || !CAR_CONFIGS_COLLECTION_ID) {
+    return NextResponse.json(
+      { success: false, error: 'Appwrite database and collection IDs are not configured' },
+      { status: 500 }
+    );
+  }
   try {
     const searchParams = req.nextUrl.searchParams;
     const modelId = searchParams.get('modelId');
